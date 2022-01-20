@@ -3,6 +3,7 @@ import { Button } from "reactstrap";
 import Select from "react-select";
 import { options } from "../../OptionsValues";
 import { map, reduce } from "lodash";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 const Selector = ({ viewSelect }) => {
   const [selectedStoresCount, setselectedStoresCount] = useState(0);
@@ -30,9 +31,8 @@ const Selector = ({ viewSelect }) => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(selectedStores);
-
-    //   e.preventDefault();
   };
   return (
     <>
