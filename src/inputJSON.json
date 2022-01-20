@@ -1,0 +1,12 @@
+{
+  "all": {
+    "id": "all stores",
+    "label": "All Stores",
+    "category": "all"
+  },
+  "specific": {
+    "id": "specific store",
+    "label": "Specific Store",
+    "category": "specific"
+  }
+}
