@@ -8,7 +8,15 @@ function App() {
   const [viewSelect, setViewSelect] = useState(false);
   // const [resources, setResources] = useState(jsonData);
 
-  const hanleCheck = (e) => {
+  const handleAllCheck = (e) => {
+    let isChecked = e.target.checked;
+    if (isChecked === true) {
+      console.log("hy");
+      setViewSelect(false);
+    }
+  };
+
+  const handleCheck = (e) => {
     setViewSelect(!viewSelect);
   };
 
@@ -23,9 +31,19 @@ function App() {
           </div>
         );
       })} */}
-      <input type="checkbox" /> All
+      <input
+        style={{ padding: "15px" }}
+        type="checkbox"
+        onClick={handleAllCheck}
+      />{" "}
+      All
       <br></br>
-      <input onClick={hanleCheck} type="checkbox" /> Specific
+      <input
+        style={{ padding: "15px" }}
+        onClick={handleCheck}
+        type="checkbox"
+      />{" "}
+      Specific
       <br />
       {viewSelect && <Selector viewSelect={viewSelect} />}
     </FormWrapper>
