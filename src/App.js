@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import FormWrapper from "./Components/FormWrapper";
 import Selector from "./Components/Inputs/Select";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [viewSelect, setViewSelect] = useState(false);
@@ -26,9 +27,7 @@ function App() {
       <br></br>
       <input onClick={hanleCheck} type="checkbox" /> Specific
       <br />
-      {viewSelect && (
-        <Selector viewSelect={viewSelect} onChange={handleSelector} />
-      )}
+      {viewSelect && <Selector viewSelect={viewSelect} />}
     </FormWrapper>
   );
 }
