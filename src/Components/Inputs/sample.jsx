@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
 import Select from "react-select";
 import { options } from "../../OptionsValues";
 import { map } from "lodash";
+import Button from "../Button";
 
 const Selector = ({ viewSelect }) => {
+  console.log("view selector", viewSelect);
   const [selectedStoresCount, setselectedStoresCount] = useState(0);
-  const [selectedStores, setSelectedStores] = useState([]);
   const totalStoresCount = options.length;
+  const [selectedStores, setSelectedStores] = useState([]);
+  console.log(selectedStores);
 
   //get selected Stores
   const getSelectedStores = (store, last) => {
@@ -51,9 +54,7 @@ const Selector = ({ viewSelect }) => {
           onChange={handleSelect}
         />
       </div>
-      <Button color="danger" outline onClick={handleSubmit}>
-        Submit
-      </Button>
+      <Button outline color="danger" onClick={handleSubmit} />
     </>
   );
 };
