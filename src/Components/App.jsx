@@ -73,6 +73,7 @@ const App = () => {
   const clearStoresList = () => {
     setSelectedStores([]);
     setAllselectedStores([]);
+    setselectedStoresCount(0);
   };
 
   const unChecked = () => {
