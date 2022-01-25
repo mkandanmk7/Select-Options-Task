@@ -1,4 +1,4 @@
-export const options = [
+export const listedAllStores = [
   { value: "shop1", label: "Shop_1" },
   { value: "shop2", label: "Shop_2" },
   { value: "shop3", label: "Shop_3" },
