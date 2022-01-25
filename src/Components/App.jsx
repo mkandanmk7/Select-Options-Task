@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Select from "react-select";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import FormWrapper from "./FormWrapper";
-import { Button, Card } from "reactstrap";
+import { Card } from "reactstrap";
 import { listedAllStores } from "../OptionsValues";
+import ButtonComp from "./ButtonComp";
+import ReactSelect from "./Inputs/ReactSelect";
 
-const SampleSelect = () => {
+const App = () => {
   const [viewSelect, setViewSelect] = useState(false);
   const [options, setOptions] = useState(listedAllStores);
   const [allStores, setAllStores] = useState(false);
@@ -18,27 +20,46 @@ const SampleSelect = () => {
   //   const [selectedStoresList, setSelectedStoresList] = useState([]);
   const totalStoresCount = options.length;
 
-  //viewSelect change checkbox change
-  const handleChange = (e) => {
-    if (e.target.name === "allstores" && e.target.checked === true) {
+  //changes states boolean values
+
+  const changeStates = (e) => {
+    const checked = e.target.checked;
+    if (checked) {
       setViewSelect(false);
       setAllselectedStores(options);
       setAllStores(true);
       setSpecifiStores(false);
+    }
+  };
+  //changes states boolean values
+  const changeStatesSpecific = (e) => {
+    const checked = e.target.checked;
+
+    if (checked) {
+      setViewSelect(true);
+      setAllStores(false);
+      setSpecifiStores(true);
+    } else if (!checked) {
+      setViewSelect(false);
+      setAllStores(false);
+      setSpecifiStores(false);
+    }
+  };
+
+  //viewSelect change checkbox change
+  const handleChange = (e) => {
+    if (e.target.name === "allstores" && e.target.checked === true) {
+      changeStates(e);
     } else if (
       e.target.name === "specificstores" &&
       e.target.checked === true
     ) {
-      setViewSelect(true);
-      setAllStores(false);
-      setSpecifiStores(true);
+      changeStatesSpecific(e);
     } else if (
       e.target.name === "specificstores" &&
       e.target.checked === false
     ) {
-      setViewSelect(false);
-      setAllStores(false);
-      setSpecifiStores(false);
+      changeStatesSpecific(e);
     }
   };
 
@@ -49,13 +70,23 @@ const SampleSelect = () => {
     specificStores && setselectedStoresCount(selectedStore);
   };
 
+  const clearStoresList = () => {
+    setSelectedStores([]);
+    setAllselectedStores([]);
+  };
+
+  const unChecked = () => {
+    setSpecifiStores(false);
+    setAllStores(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     allStores && console.log(allSelectedStore);
     specificStores && console.log(selectedStores);
     setViewSelect(false);
-    setSelectedStores([]);
-    setAllselectedStores([]);
+    unChecked();
+    clearStoresList();
   };
 
   return (
@@ -82,41 +113,29 @@ const SampleSelect = () => {
             Specific Stores
           </div>
           <br />
-
+          {/* selectedStoresCount,totalStoresCount,selectedStores,options,handleSelect */}
           {viewSelect && (
-            <>
-              <span>
-                stores : {selectedStoresCount} of {totalStoresCount}
-              </span>
-
-              <div style={{ width: "80vh", marginLeft: "30vh" }}>
-                <Select
-                  isMulti
-                  name="selected"
-                  // defaultValue={storeValues}
-                  value={selectedStores}
-                  options={options}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  onChange={handleSelect}
-                />
-              </div>
-            </>
+            <ReactSelect
+              selectedStoresCount={selectedStoresCount}
+              totalStoresCount={totalStoresCount}
+              selectedStores={selectedStores}
+              options={options}
+              handleSelect={handleSelect}
+            />
           )}
         </Card>
 
-        <Button
-          style={{ marginLeft: "95vh" }}
+        <ButtonComp
           color="danger"
           type="submit"
-          outline
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
+          border={true}
+          label={"submit"}
+          handleSubmit={handleSubmit}
+          styles={{ marginLeft: "95vh" }}
+        />
       </FormWrapper>
     </div>
   );
 };
 
-export default SampleSelect;
+export default App;

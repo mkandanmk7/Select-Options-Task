@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import SampleSelect from "./Components/SampleSelect";
+// import SampleSelect from "./Components/SampleSelect";
+import App from "./Components/App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <SampleSelect />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

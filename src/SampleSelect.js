@@ -7,7 +7,7 @@ import { options } from "./OptionsValues";
 import Select from "react-select";
 import { map } from "lodash";
 
-function App() {
+function SampleSelect() {
   const [viewSelect, setViewSelect] = useState(false);
   // const [resources, setResources] = useState(jsonData);
   const [ticked, setTicked] = useState(false);
@@ -138,4 +138,4 @@ function App() {
   );
 }
 
-export default App;
+export default SampleSelect;
